@@ -10,17 +10,34 @@ const { program } = require("commander");
 const invokeAction = async ({ action, id, name, email, phone }) => {
 	switch (action) {
 		case "list":
-			const contactsList = await listContacts();
-			return console.log(contactsList);
+			try {
+				const contactsList = await listContacts();
+				return console.log(contactsList);
+			} catch (error) {
+				return console.error(error);
+			}
+
 		case "get":
-			const getContact = await getContactById(id);
-			return console.log(getContact);
+			try {
+				const getContact = await getContactById(id);
+				return console.log(getContact);
+			} catch (error) {
+				return console.error(error);
+			}
 		case "add":
-			const newContact = await addContact({ name, email, phone });
-			return console.log(newContact);
+			try {
+				const newContact = await addContact({ name, email, phone });
+				return console.log(newContact);
+			} catch (error) {
+				return console.error(error);
+			}
 		case "remove":
-			const deleteContact = await removeContact(id);
-			return console.log(deleteContact);
+			try {
+				const deleteContact = await removeContact(id);
+				return console.log(deleteContact);
+			} catch (error) {
+				return console.error(error);
+			}
 		default:
 			return console.log("Unknown aciton");
 	}
